@@ -2,9 +2,9 @@
   "name": "dyson",
   "version": "1.0.0",
   "description": "Discord bot to moderate channel",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "npx node-lambda run",
+    "start": "npx node-lambda package && npx node-lambda run",
     "deploy": "npx node-lambda package && npx node-lambda deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -40,6 +40,7 @@
   "author": "groovy and laulau",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.755.0",
     "discord.js": "^12.3.1"
   }
 }
