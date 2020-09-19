@@ -6,13 +6,9 @@ const bot = new Discord.Client();
 app.get('/', (req, res) => {
     res.status(200).send("Hello world we made it!");
 })
-app.get('/hello-word', (req, res) => {
-    res.status(200).send("Hello world we made it! 2")
-})
+
 app.get('/dyson', async (req, res) => {
-    console.log('hit dyson endpoint');
     secret = await getSecret();
-    console.log('successfully got secret');
     bot.once('ready', () => {
         console.log('At the ready!!')
     });
@@ -39,7 +35,6 @@ async function getSecret() {
     var client = new AWS.SecretsManager({
         region: region
     });
-    console.log('made secrets manager client');
 
     const data = await client.getSecretValue({ SecretId: secretName }).promise();
     if ('SecretString' in data) {
@@ -50,7 +45,6 @@ async function getSecret() {
         decodedBinarySecret = new Buffer(data.SecretBinary, 'base64').toString('ascii');
         return decodedBinarySecret;
     }
-
 };
 
 
