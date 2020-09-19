@@ -8,7 +8,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/dyson', async (req, res) => {
+    console.log('hit dyson endpoint', new Date());
     secret = await getSecret();
+    console.log('successfully got secret');
     bot.once('ready', () => {
         console.log('At the ready!!')
     });
@@ -25,6 +27,7 @@ app.get('/dyson', async (req, res) => {
 })
 
 async function getSecret() {
+    console.log('getting secret, making client secret manager');
     var AWS = require('aws-sdk'),
         region = 'us-east-2',
         secretName = 'bot_client_secret',
@@ -34,6 +37,7 @@ async function getSecret() {
     var client = new AWS.SecretsManager({
         region: region
     });
+    console.log('made secrets manager client');
 
     const data = await client.getSecretValue({ SecretId: secretName }).promise();
     if ('SecretString' in data) {
