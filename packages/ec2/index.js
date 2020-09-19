@@ -7,7 +7,7 @@ app.get('/', (req, res) => {
     res.send("Hello world we made it!")
 })
 
-app.get('/dyson', (req, res) => {
+app.get('/dyson', async (req, res) => {
     secret = await getSecret();
     bot.once('ready', () => {
         console.log('At the ready!!')
