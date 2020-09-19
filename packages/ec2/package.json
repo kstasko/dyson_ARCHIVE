@@ -1,0 +1,22 @@
+{
+  "name": "dyson-ec2",
+  "version": "1.0.0",
+  "description": "Ec2 instance for dyson discord bot.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kstasko/dyson_ec2.git"
+  },
+  "author": "laulau and groovy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kstasko/dyson_ec2/issues"
+  },
+  "homepage": "https://github.com/kstasko/dyson_ec2#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
