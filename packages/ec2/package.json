@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/kstasko/dyson_ec2#readme",
   "dependencies": {
+    "aws-sdk": "^2.756.0",
     "discord.js": "^12.3.1",
     "express": "^4.17.1"
   },
