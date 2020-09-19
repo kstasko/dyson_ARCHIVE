@@ -26,7 +26,7 @@ app.get('/dyson', async (req, res) => {
 
 async function getSecret() {
     var AWS = require('aws-sdk'),
-        region = process.env.AWS_REGION,
+        region = 'us-east-2',
         secretName = 'bot_client_secret',
         secret,
         decodedBinarySecret;
