@@ -4,13 +4,13 @@ const Discord = require('discord.js');
 
 const bot = new Discord.Client();
 app.get('/', (req, res) => {
-    res.status(200).send("Hello world we made it!", new Date())
+    res.status(200).send("Hello world we made it!");
 })
 app.get('/hello-word', (req, res) => {
-    res.status(200).send("Hello world we made it! 2", new Date())
+    res.status(200).send("Hello world we made it! 2")
 })
 app.get('/dyson', async (req, res) => {
-    console.log('hit dyson endpoint', new Date());
+    console.log('hit dyson endpoint');
     secret = await getSecret();
     console.log('successfully got secret');
     bot.once('ready', () => {
@@ -25,7 +25,7 @@ app.get('/dyson', async (req, res) => {
     });
 
     bot.login(secret);
-    response.status(200).send("Hello from EC2!");
+    res.status(200).send("Hello from EC2!");
 })
 
 async function getSecret() {
