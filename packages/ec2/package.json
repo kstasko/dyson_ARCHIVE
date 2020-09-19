@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/kstasko/dyson_ec2#readme",
   "dependencies": {
+    "discord.js": "^12.3.1",
     "express": "^4.17.1"
   },
   "devDependencies": {
