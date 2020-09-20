@@ -7,6 +7,10 @@ app.get('/', (req, res) => {
     res.status(200).send("Hello world we made it!");
 })
 
+app.get('/publish-message', async (request, response) => {
+    await publishMessage('dyson_tight')
+});
+
 app.get('/dyson', async (req, res) => {
     secret = await getSecret();
     bot.once('ready', () => {
