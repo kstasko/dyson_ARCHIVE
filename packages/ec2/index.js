@@ -40,7 +40,7 @@ app.get('/dyson', async (req, res) => {
 });
 
 async function publishMessage(topic) {
-    // AWS.config.update({region: 'us-east-2'});
+    AWS.config.update({region: 'us-east-2'});
     try {
         const params = {
             Message: 'hello!',
