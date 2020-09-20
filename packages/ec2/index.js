@@ -15,12 +15,6 @@ app.get('/', (req, res) => {
     res.status(200).send("Hello world we made it!");
 })
 
-app.get('/publish-message', async (request, response) => {
-    console.log('publishing message');
-    await publishMessage('dyson_tight');
-    response.status(200).send('Sent a message');
-});
-
 app.get('/dyson', async (req, res) => {
     secret = await getSecret();
     bot.once('ready', () => {
@@ -31,7 +25,7 @@ app.get('/dyson', async (req, res) => {
         if (msg.content === 'tight') {
             await publishMessage('dyson_tight');
             // msg.channel.send('tight.');
-            // console.log("toight-ed " + msg.author.username);
+            console.log("toight-ed " + msg.author.username);
         }
     });
 
