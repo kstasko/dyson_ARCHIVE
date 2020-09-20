@@ -3,6 +3,14 @@ const app = express()
 const Discord = require('discord.js');
 
 const bot = new Discord.Client();
+
+
+var AWS = require('aws-sdk'),
+region = 'us-east-2',
+secretName = 'bot_client_secret',
+secret,
+decodedBinarySecret;
+
 app.get('/', (req, res) => {
     res.status(200).send("Hello world we made it!");
 })
@@ -49,11 +57,7 @@ async function publishMessage(topic) {
 
 async function getSecret() {
     console.log('getting secret, making client secret manager');
-    var AWS = require('aws-sdk'),
-        region = 'us-east-2',
-        secretName = 'bot_client_secret',
-        secret,
-        decodedBinarySecret;
+
 
     var client = new AWS.SecretsManager({
         region: region
