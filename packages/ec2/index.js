@@ -1,15 +1,15 @@
-const express = require('express')
-const app = express()
+const express = require('express');
 const Discord = require('discord.js');
-
-const bot = new Discord.Client();
-
-
 var AWS = require('aws-sdk'),
 region = 'us-east-2',
 secretName = 'bot_client_secret',
 secret,
 decodedBinarySecret;
+
+const app = express();
+const bot = new Discord.Client();
+const AWS_ACCOUNT = 'arn:aws:sns:us-east-2:467222377375'
+
 
 app.get('/', (req, res) => {
     res.status(200).send("Hello world we made it!");
@@ -44,7 +44,7 @@ async function publishMessage(topic) {
     try {
         const params = {
             Message: 'hello!',
-            TopicArn: topic
+            TopicArn: `${AWS_ACCOUNT}:${topic}`
         }
     
         const awsSNSClient = new AWS.SNS()
