@@ -8,7 +8,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/publish-message', async (request, response) => {
-    await publishMessage('dyson_tight')
+    console.log('publishing message');
+    await publishMessage('dyson_tight');
+    response.status(200).send('Sent a message');
 });
 
 app.get('/dyson', async (req, res) => {
