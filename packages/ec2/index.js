@@ -43,7 +43,8 @@ async function publishMessage(topic) {
     
         const awsSNSClient = new AWS.SNS()
         const data = await awsSNSClient.publish(params).promise();
-        console.log(`Message ${params.Message} sent to topic ${params.TopicArn} with id ${data.MessageId}`)
+        console.log(`Message ${params.Message} sent to topic ${params.TopicArn} with id ${data.MessageId}`);
+        console.log('Message sent at', new Date());
     } catch (err) {
         console.log('Error publishing message', err);
     }
