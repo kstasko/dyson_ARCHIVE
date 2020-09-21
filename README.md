@@ -2,11 +2,11 @@
 Discord Bot intended to support the discord server
 ## Features
 ### Dyson can...
-- Toight
-  - Replies 'tight' with 'tight'
+  - reply 'tight' with 'tight'
 
 ### Dyson would like to...
-- Report People
+  - play chungus song
+  - report people
 
 #
 
@@ -21,8 +21,7 @@ Discord Bot intended to support the discord server
 - [ ] lambda function writes to discord
 #
 
-##MVP 2 - Tight IaC:
+## MVP 2 - Tight IaC:
 - [ ] EC2 runs with new folder structure
 - [ ] IaC builds SNS topics
 - [ ] IaC builds lambda shell with trigger
-#
