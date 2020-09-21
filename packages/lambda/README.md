@@ -1,6 +1,14 @@
 # Dyson
 Discord Bot intended to support the discord server
 
+Dyson can...
+* Toight
+  *Replies 'tight' with 'tight'
+
+Dyson would like to...
+* Report People
+
+
 
 ![Image of AWS Architecture](https://github.com/kstasko/dyson/blob/master/images/dyson.jpg)
 
