@@ -1,5 +1,5 @@
 {
-  "name": "dyson",
+  "name": "dyson-tight",
   "version": "1.0.0",
   "description": "Discord bot to moderate channel",
   "main": "src/index.js",
