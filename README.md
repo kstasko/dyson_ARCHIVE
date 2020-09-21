@@ -1,4 +1,4 @@
 # dyson
 Discord Bot to support the server
 
-![Image of AWS Architecture](https://imgur.com/a/1vVTJks)
+![Image of AWS Architecture](https://github.com/kstasko/dyson/blob/master/images/dyson.jpg)
