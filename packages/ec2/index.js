@@ -17,20 +17,20 @@ app.get('/', (req, res) => {
 
 app.get('/dyson', async (req, res) => {
     console.log('hit dyson!');
-    // secret = await getSecret();
-    // bot.once('ready', () => {
-    //     console.log('At the ready!!')
-    // });
+    secret = await getSecret();
+    bot.once('ready', () => {
+        console.log('At the ready!!')
+    });
 
-    // bot.on("message", async (msg) => {
-    //     if (msg.content === 'tight') {
-    //         await publishMessage('dyson_tight');
-    //         // msg.channel.send('tight.');
-    //         console.log("toight-ed " + msg.author.username);
-    //     }
-    // });
+    bot.on("message", async (msg) => {
+        if (msg.content === 'tight') {
+            await publishMessage('dyson_tight');
+            // msg.channel.send('tight.');
+            console.log("toight-ed " + msg.author.username);
+        }
+    });
 
-    // bot.login(secret);
+    bot.login(secret);
     res.status(200).send("Hello from EC2!");
 });
 
