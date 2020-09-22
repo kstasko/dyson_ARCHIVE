@@ -16,7 +16,6 @@ app.get('/', (req, res) => {
 })
 
 app.get('/dyson', async (req, res) => {
-    console.log('hit dyson!');
     secret = await getSecret();
     bot.once('ready', () => {
         console.log('At the ready!!')
@@ -25,7 +24,6 @@ app.get('/dyson', async (req, res) => {
     bot.on("message", async (msg) => {
         if (msg.content === 'tight') {
             await publishMessage('dyson_tight');
-            // msg.channel.send('tight.');
             console.log("toight-ed " + msg.author.username);
         }
     });
@@ -45,15 +43,12 @@ async function publishMessage(topic) {
         const awsSNSClient = new AWS.SNS()
         const data = await awsSNSClient.publish(params).promise();
         console.log(`Message ${params.Message} sent to topic ${params.TopicArn} with id ${data.MessageId}`);
-        // console.log('Message sent at', new Date());
     } catch (err) {
         console.log('Error publishing message', err);
     }
 }
 
 async function getSecret() {
-    console.log('getting secret, making client secret manager');
-
 
     var client = new AWS.SecretsManager({
         region: region
