@@ -1,7 +1,7 @@
 module.exports = {
     apps: [{
       name: 'dyson_ec2',
-      script: './index.js'
+      script: './src/index.js'
     }],
     deploy: {
       production: {
