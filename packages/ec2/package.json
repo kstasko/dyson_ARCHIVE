@@ -2,11 +2,12 @@
   "name": "dyson-ec2",
   "version": "1.0.0",
   "description": "Ec2 instance for dyson discord bot.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "restart": "pm2 startOrRestart ecosystem.config.js",
-    "deploy": "pm2 deploy ecosystem.config.js production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "cp config/remote.env .env && pm2 deploy ecosystem.config.js production",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cp config/local.env .env && node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "dependencies": {
     "aws-sdk": "^2.756.0",
     "discord.js": "^12.3.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1"
   },
   "devDependencies": {
