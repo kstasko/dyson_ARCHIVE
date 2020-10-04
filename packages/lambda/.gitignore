@@ -8,6 +8,6 @@ context.json
 event_sources.json
 
 #Node
-node_modules/*
+node_modules
 .eslintignore
 .npmignore
