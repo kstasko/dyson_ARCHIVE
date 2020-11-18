@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+const {publishMessage} = require('./sns');
 
 const discordListener = (secret) => {
     bot.once('ready', () => {
@@ -9,7 +10,7 @@ const discordListener = (secret) => {
     bot.on("message", async (msg) => {
         if (msg.content === 'tight') {
             console.log("toight-ed " + msg.author.username);
-            return 'dyson_tight';
+            await publishMessage('dyson_tight');
         }
     });
 

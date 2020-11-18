@@ -14,10 +14,7 @@ app.get('/', (req, res) => {
 
 app.get('/dyson', async (req, res) => {
     secret = await getSecret();
-    const topic = discordListener(secret);
-    if (topic) {
-        await publishMessage(topic);
-    }
+    discordListener(secret)
     res.status(200).send("Hello from EC2!");
 });
 

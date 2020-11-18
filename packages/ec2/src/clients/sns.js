@@ -4,6 +4,7 @@ const AWS_ACCOUNT = 'arn:aws:sns:us-east-2:467222377375'
 
 async function publishMessage(topic) {
     try {
+        console.log('trying to send message')
         const params = {
             Message: 'hello!',
             TopicArn: `${AWS_ACCOUNT}:${topic}`
