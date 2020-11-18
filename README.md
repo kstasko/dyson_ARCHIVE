@@ -1,5 +1,6 @@
 # Dyson
 Discord Bot intended to support the discord server
+
 ## Features
 ### Dyson can...
   - reply 'tight' with 'tight'
@@ -14,14 +15,7 @@ Discord Bot intended to support the discord server
 
 #
 
-## MVP 1 - Tight:
-- [x] ~~EC2 instance is currently listening to Discord Channel~~
-- [x] ~~EC2 creates SNS topic~~
-- [x] ~~SNS triggers lambda~~
-- [ ] lambda function writes to discord
-#
-
-## MVP 2 - Tight IaC:
-- [ ] EC2 runs with new folder structure
-- [ ] IaC builds SNS topics
-- [ ] IaC builds lambda shell with trigger
+## To Run You Need:
+* AWS Access & Secret Access Key
+* SSH PEM file to EC2 instance
+* Hit endpoint after deploying to EC2
