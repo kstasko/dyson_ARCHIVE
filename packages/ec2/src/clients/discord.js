@@ -4,7 +4,7 @@ const {publishMessage} = require('./sns');
 
 const discordListener = (secret) => {
     bot.once('ready', () => {
-        console.log('At the ready!!')
+        console.log('Discord Bot At the Ready!!')
     });
 
     bot.on("message", async (msg) => {
@@ -13,7 +13,7 @@ const discordListener = (secret) => {
             await publishMessage('dyson_tight');
         }
         if (msg.content === 'wtf') {
-            console.log (msg.author.username + 'is reacting')
+            console.log (msg.author.username + 'is wtf reacting')
             await publishMessage('dyson_wtf_reaction')
         }
     });
