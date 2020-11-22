@@ -1,0 +1,18 @@
+{
+  "name": "dyson-wtf-react",
+  "version": "1.0.0",
+  "description": "Discord Bot response to 'wtf'",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/kstasko/dyson"
+  },
+  "keywords": [
+    "wtf-react"
+  ],
+  "author": "groovy && laulau",
+  "license": "ISC"
+}
