@@ -11,3 +11,4 @@ event_sources.json
 node_modules/*
 .eslintignore
 .npmignore
+.vs/VSWorkspaceState.json
