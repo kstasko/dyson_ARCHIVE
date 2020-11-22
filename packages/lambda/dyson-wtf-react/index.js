@@ -17,3 +17,24 @@ async function getSecret(secretName) {
         return new Buffer(data.SecretBinary, 'base64').toString('ascii');
     }
 };
+
+exports.handler = async (event) => {
+    const botSecret = await getSecret('bot_client_secret');
+    const channelId = await getSecret('discord_channel_id');
+
+    bot.on('ready', () => {
+        console.log('WTF Reacting to Prior Message');
+        bot.channels.cache.get(channelId).send('Testing.')
+        //retrieve last message
+        //react to last message
+    });
+
+    bot.login(botSecret);
+
+    await SVGPathSegClosePath(2000);
+    return { statusCode: 200, body: JSON.stringify("WTF!") }
+}
+
+function sleep (time) {
+    return new Promise((resolve) => setTimeout(resolve, time)); 
+}
