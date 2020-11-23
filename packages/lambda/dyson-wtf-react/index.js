@@ -1,7 +1,7 @@
-const Discord = require('discord.js')
+const Discord = require('discord.js');
 
 const bot = new Discord.Client();
-var AWS = require('aws-sdk')
+var AWS = require('aws-sdk');
 const region = process.env.AWS_REGION;
 
 const client = new AWS.SecretsManager({
@@ -31,7 +31,7 @@ exports.handler = async (event) => {
 
     bot.login(botSecret);
 
-    await SVGPathSegClosePath(2000);
+    await sleep(2000);
     return { statusCode: 200, body: JSON.stringify("WTF!") }
 }
 
