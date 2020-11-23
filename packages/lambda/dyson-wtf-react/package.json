@@ -4,6 +4,8 @@
   "description": "Discord Bot response to 'wtf'",
   "main": "index.js",
   "scripts": {
+    "start": "npx node-lambda package && npx node-lambda run",
+    "deploy": "npx node-lambda package && npx node-lambda deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
