@@ -25,9 +25,14 @@ exports.handler = async (event) => {
     bot.on('ready', () => {
         console.log('WTF Reacting to Prior Message');
         bot.channels.cache.get(channelId).send('Testing.')
-        //retrieve last message
-        //react to last message
-    });
+        channel.messages.fetch({limit: 2}).then(res => {
+            let lm = res.last()
+            //something goes wrong here
+            bot.channels.cache.get(channelId).messages(lm).react(':smile')
+            })
+            
+        }
+    );
 
     bot.login(botSecret);
 
