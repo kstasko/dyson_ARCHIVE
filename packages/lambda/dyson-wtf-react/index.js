@@ -9,7 +9,7 @@ const client = new AWS.SecretsManager({
 });
 
 async function getSecret(secretName) {
-    const data = await client.getSecretValue({ SecretId: secretName}).promise();
+    const data = await client.getSecretValue({ SecretId: secretName }).promise();
     if ('SecretString' in data) {
         return JSON.parse(data.SecretString)[secretName];
     }
@@ -22,17 +22,16 @@ exports.handler = async (event) => {
     const botSecret = await getSecret('bot_client_secret');
     const channelId = await getSecret('discord_channel_id');
 
-    bot.on('ready', () => {
+    bot.on('ready', async () => {
         console.log('WTF Reacting to Prior Message');
-        bot.channels.cache.get(channelId).send('Testing.')
-        channel.messages.fetch({limit: 2}).then(res => {
-            let lm = res.last()
-            //something goes wrong here
-            bot.channels.cache.get(channelId).messages(lm).react(':smile')
-            })
-            
-        }
-    );
+        const channel = await bot.channels.fetch(channelId);
+        const recentMessages = await channel.messages.fetch({ limit: 2 });
+        messageToReact = await channel.messages.fetch(recentMessages.last().id);
+        const reactions = ['<:wtf:612768213695987722>', '<:wtf2:663099582120722433>', '<:wtf3:663100351272058880>'];
+        reactions.forEach(reaction => {
+            messageToReact.react(reaction)
+        });
+    });
 
     bot.login(botSecret);
 
@@ -40,6 +39,6 @@ exports.handler = async (event) => {
     return { statusCode: 200, body: JSON.stringify("WTF!") }
 }
 
-function sleep (time) {
-    return new Promise((resolve) => setTimeout(resolve, time)); 
+function sleep(time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
 }
