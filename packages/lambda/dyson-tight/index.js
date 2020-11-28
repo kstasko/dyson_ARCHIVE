@@ -16,7 +16,6 @@ async function getSecret(secretName) {
   else {
     return new Buffer(data.SecretBinary, 'base64').toString('ascii');
   }
-
 };
 
 exports.handler = async (event) => {
