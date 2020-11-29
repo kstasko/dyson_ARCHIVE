@@ -28,9 +28,7 @@ exports.handler = async (event) => {
         const recentMessages = await channel.messages.fetch({ limit: 2 });
         messageToReact = await channel.messages.fetch(recentMessages.last().id);
         const reactions = ['<:wtf:612768213695987722>', '<:wtf2:663099582120722433>', '<:wtf3:663100351272058880>'];
-        reactions.forEach(reaction => {
-            messageToReact.react(reaction)
-        });
+        await Promise.all(reactions.map(reaction => react(reaction, messageToReact)));
     });
 
     bot.login(botSecret);
@@ -38,6 +36,12 @@ exports.handler = async (event) => {
     await sleep(2000);
     return { statusCode: 200, body: JSON.stringify("WTF!") }
 }
+
+async function react(reaction, message) {
+    return new Promise((resolve, reject) => {
+        resolve(message.react(reaction))
+    })
+} 
 
 function sleep(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
