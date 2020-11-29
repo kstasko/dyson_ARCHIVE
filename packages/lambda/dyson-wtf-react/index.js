@@ -33,7 +33,7 @@ exports.handler = async (event) => {
 
     bot.login(botSecret);
 
-    await sleep(2000);
+    await sleep(5000);
     return { statusCode: 200, body: JSON.stringify("WTF!") }
 }
 
