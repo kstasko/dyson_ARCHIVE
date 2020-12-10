@@ -11,6 +11,10 @@ jobs:
   get-secret-test:
       runs-on: ubuntu-latest
       steps:
-      - run: echo $SECRET_A
-      - run: export SECRET_B=ABC
-      - run: echo $SECRET_B
+       - name: Secret test
+         env:
+          GITHUB_SECRET: ${{ secrets.SECRET_A }}
+          LAUREN_SECRET: BENTLEY
+         run: echo $LAUREN_SECRET
+         run: echo $GITHUB_SECRET
+      
