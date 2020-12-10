@@ -9,12 +9,13 @@ jobs:
       - run: npm install -g bats
       - run: bats -v
   get-secret-test:
-      runs-on: ubuntu-latest
-      steps:
-       - name: Secret test
-         env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Secret test
+        run: echo $LAUREN_SECRET
+        run: echo $GITHUB_SECRET
+        env:
           GITHUB_SECRET: ${{ secrets.SECRET_A }}
           LAUREN_SECRET: BENTLEY
-         run: echo $LAUREN_SECRET
-         run: echo $GITHUB_SECRET
+
       
