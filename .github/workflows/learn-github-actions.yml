@@ -1,5 +1,8 @@
 name: learn-github-actions
 on: [push]
+env:
+  GITHUB_SECRET: ${{ secrets.SECRET_A }}
+  LAUREN_SECRET: BENTLEY
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
@@ -14,8 +17,5 @@ jobs:
       - uses: actions/checkout@v2
       - run: echo $LAUREN_SECRET
       - run: echo $GITHUB_SECRET
-      - env:
-          GITHUB_SECRET: ${{ secrets.SECRET_A }}
-          LAUREN_SECRET: BENTLEY
 
       
