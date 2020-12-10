@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Secret test
-        run: echo $LAUREN_SECRET
-        run: echo $GITHUB_SECRET
+      - run: echo $LAUREN_SECRET
+      - run: echo $GITHUB_SECRET
         env:
           GITHUB_SECRET: ${{ secrets.SECRET_A }}
           LAUREN_SECRET: BENTLEY
