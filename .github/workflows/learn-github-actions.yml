@@ -1,4 +1,4 @@
-name: deploy-all
+name: learn-github-actions
 on:
   push:
     branches:
