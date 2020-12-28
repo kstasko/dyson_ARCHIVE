@@ -24,6 +24,7 @@ jobs:
       uses: youyo/aws-cdk-github-actions@v1
       with:
         cdk_subcommand: 'synth'
+        working_dir: 'packages/stack'
         actions_comment: true
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
@@ -38,6 +39,7 @@ jobs:
       with:
         cdk_subcommand: 'diff'
         actions_comment: true
+        working_dir: 'packages/stack'
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
@@ -52,6 +54,7 @@ jobs:
         cdk_subcommand: 'deploy'
         cdk_stack: 'DysonStack'
         cdk_args: '--require-approval never'
+        working_dir: 'packages/stack'
         actions_comment: false
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
