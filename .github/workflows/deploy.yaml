@@ -1,16 +1,19 @@
-name: learn-github-actions
-on: [push]
+name: deploy-all
+on:
+  push:
+    branches:
+      -feature/github-actions
 env:
   GITHUB_SECRET: ${{ secrets.SECRET_A }}
   LAUREN_SECRET: BENTLEY
 jobs:
-  check-bats-version:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-      - run: npm install -g bats
-      - run: bats -v
+      - run: npm install
+      - run: bash ./config/deploy.sh
   get-secret-test:
     runs-on: ubuntu-latest
     steps:
