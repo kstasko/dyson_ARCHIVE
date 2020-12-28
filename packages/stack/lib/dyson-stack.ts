@@ -4,7 +4,7 @@ import { Role, ServicePrincipal, IManagedPolicy, ManagedPolicy, PolicyStatement 
 import * as path from 'path';
 import * as fs from 'fs';
 
-const lambdas = fs.readdirSync('../../lambda');
+const lambdas = fs.readdirSync(`${__dirname}/../../lambda`);
 
 export class DysonStack extends cdk.Stack {
   constructor(app: cdk.App, id: string, stackProps?: cdk.StackProps) {
@@ -15,6 +15,7 @@ export class DysonStack extends cdk.Stack {
         managedPolicies: [ManagedPolicy.fromAwsManagedPolicyName('SecretsManagerReadWrite')]
       }
     )
+    console.log('lambdas', lambdas);
 
     lambdas.forEach((dysonLambda) => {
       return new lambda.Function(this, dysonLambda, {
