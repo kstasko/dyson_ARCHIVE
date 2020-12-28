@@ -8,7 +8,7 @@ export class DysonStack extends cdk.Stack {
     super(app, id, stackProps);
     const lambdaRole = new Role(this, 'lambdaRole',
       {
-        assumedBy: new ServicePrincipal('lambda.amazon.com'),
+        assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
         managedPolicies: [ManagedPolicy.fromAwsManagedPolicyName('SecretsManagerReadWrite')]
       }
     )
