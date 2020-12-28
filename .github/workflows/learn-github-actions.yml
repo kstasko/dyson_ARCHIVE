@@ -10,54 +10,22 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       - run: npm install
-
+      - name: cdk deploy
+        uses: youyo/aws-cdk-github-actions@v1
+        with:
+          cdk_subcommand: 'deploy'
+          cdk_stack: 'DysonStack'
+          cdk_args: '--require-approval never'
+          working_dir: 'packages/stack'
+          actions_comment: false
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: 'us-east-2'
+          AWS_DEFAULT_ACCOUNT: ${{ secrets.AWS_DEFAULT_ACCOUNT }}
   get-secret-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: echo $LAUREN_SECRET
       - run: echo $GITHUB_SECRET
-  cdk-synth:
-    runs-on: ubuntu-latest
-    steps:
-    - name: cdk synth
-      uses: youyo/aws-cdk-github-actions@v1
-      with:
-        cdk_subcommand: 'synth'
-        working_dir: 'packages/stack'
-        actions_comment: true
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: 'us-east-2'
-        AWS_DEFAULT_ACCOUNT: ${{ secrets.AWS_DEFAULT_ACCOUNT }}
-  cdk-diff:
-    runs-on: ubuntu-latest
-    steps:
-    - name: cdk diff
-      uses: youyo/aws-cdk-github-actions@v1
-      with:
-        cdk_subcommand: 'diff'
-        actions_comment: true
-        working_dir: 'packages/stack'
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: 'us-east-2'
-        AWS_DEFAULT_ACCOUNT: ${{ secrets.AWS_DEFAULT_ACCOUNT }}
-  cdk-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - name: cdk deploy
-      uses: youyo/aws-cdk-github-actions@v1
-      with:
-        cdk_subcommand: 'deploy'
-        cdk_stack: 'DysonStack'
-        cdk_args: '--require-approval never'
-        working_dir: 'packages/stack'
-        actions_comment: false
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: 'us-east-2'
-        AWS_DEFAULT_ACCOUNT: ${{ secrets.AWS_DEFAULT_ACCOUNT }}
