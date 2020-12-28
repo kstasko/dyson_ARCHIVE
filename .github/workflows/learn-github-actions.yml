@@ -1,8 +1,5 @@
 name: learn-github-actions
-on:
-  push:
-    branches:
-      -feature/github-actions
+on: [push]
 env:
   GITHUB_SECRET: ${{ secrets.SECRET_A }}
   LAUREN_SECRET: BENTLEY
