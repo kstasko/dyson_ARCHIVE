@@ -4,8 +4,11 @@ Discord Bot intended to support the discord server
 ## Features
 ### Dyson can...
   - reply 'tight' with 'tight'
+  - reacts to 'wtf'
 
 ### Dyson would like to...
+  - choose random item from list
+  - sentiment analyzer
   - play chungus song
   - report people
 
