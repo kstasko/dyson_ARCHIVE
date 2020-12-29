@@ -26,7 +26,7 @@ export class DysonStack extends cdk.Stack {
         timeout: cdk.Duration.seconds(10),
         role: lambdaRole
       })
-        .addEventSource(new SnsEventSource(new Topic(this, `${lambdaId}-topic`)));
+        // .addEventSource(new SnsEventSource(new Topic(this, `${lambdaId}-topic`)));
     })
 
   }
