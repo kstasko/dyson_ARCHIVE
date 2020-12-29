@@ -1,6 +1,8 @@
 import * as cdk from '@aws-cdk/core';
-import lambda = require('@aws-cdk/aws-lambda');
-import { Role, ServicePrincipal, IManagedPolicy, ManagedPolicy, PolicyStatement } from '@aws-cdk/aws-iam';
+import * as lambda from '@aws-cdk/aws-lambda';
+import { Role, ServicePrincipal, ManagedPolicy } from '@aws-cdk/aws-iam';
+import { Topic } from '@aws-cdk/aws-sns';
+import { SnsEventSource } from '@aws-cdk/aws-lambda-event-sources';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -15,16 +17,17 @@ export class DysonStack extends cdk.Stack {
         managedPolicies: [ManagedPolicy.fromAwsManagedPolicyName('SecretsManagerReadWrite')]
       }
     )
-    console.log('lambdas', lambdas);
 
-    lambdas.forEach((dysonLambda) => {
-      return new lambda.Function(this, dysonLambda, {
-        code: new lambda.InlineCode(path.join(__dirname, '..', '..', 'lambda', dysonLambda)),
+    lambdas.forEach((lambdaId) => {
+      const dysonLambda = new lambda.Function(this, lambdaId, {
+        code: new lambda.InlineCode(path.join(__dirname, '..', '..', 'lambda', lambdaId)),
         handler: 'index.handler',
         runtime: lambda.Runtime.NODEJS_12_X,
         timeout: cdk.Duration.seconds(10),
         role: lambdaRole
       });
+
+      dysonLambda.addEventSource(new SnsEventSource(new Topic(this, lambdaId)));
     })
 
   }
