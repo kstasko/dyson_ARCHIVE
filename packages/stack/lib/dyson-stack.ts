@@ -19,8 +19,8 @@ export class DysonStack extends cdk.Stack {
     )
 
     lambdas.forEach((lambdaId) => {
-      new lambda.Function(this, lambdaId, {
-        code: new lambda.InlineCode(path.join(__dirname, '..', '..', 'lambda', lambdaId)),
+      const dysonLambda = new lambda.Function(this, lambdaId, {
+        code: new lambda.InlineCode(path.join(__dirname, '..', '..', 'lambda', `${lambdaId}-lambda`)),
         handler: 'index.handler',
         runtime: lambda.Runtime.NODEJS_12_X,
         timeout: cdk.Duration.seconds(10),
