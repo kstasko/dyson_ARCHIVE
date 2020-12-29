@@ -19,15 +19,14 @@ export class DysonStack extends cdk.Stack {
     )
 
     lambdas.forEach((lambdaId) => {
-      const dysonLambda = new lambda.Function(this, lambdaId, {
+      new lambda.Function(this, lambdaId, {
         code: new lambda.InlineCode(path.join(__dirname, '..', '..', 'lambda', lambdaId)),
         handler: 'index.handler',
         runtime: lambda.Runtime.NODEJS_12_X,
         timeout: cdk.Duration.seconds(10),
         role: lambdaRole
-      });
-
-      dysonLambda.addEventSource(new SnsEventSource(new Topic(this, `${lambdaId}-topic`)));
+      })
+        .addEventSource(new SnsEventSource(new Topic(this, `${lambdaId}-topic`)));
     })
 
   }
