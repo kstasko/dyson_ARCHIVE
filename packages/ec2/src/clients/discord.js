@@ -10,11 +10,11 @@ const discordListener = (secret) => {
     bot.on("message", async (msg) => {
         if (msg.content === 'tight') {
             console.log("toight-ed " + msg.author.username);
-            await publishMessage('dyson_tight');
+            await publishMessage('dyson-tight');
         }
         if (msg.content === 'wtf') {
             console.log (msg.author.username + 'is wtf reacting')
-            await publishMessage('dyson_wtf_reaction')
+            await publishMessage('dyson-wtf-react')
         }
     });
 

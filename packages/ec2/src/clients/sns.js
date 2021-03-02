@@ -7,7 +7,7 @@ async function publishMessage(topic) {
         console.log('SNS Trying to Send Message')
         const params = {
             Message: 'hello!',
-            TopicArn: `${AWS_ACCOUNT}:${topic}`
+            TopicArn: `${AWS_ACCOUNT}:${topic}-topic`
         }
 
         const awsSNSClient = new AWS.SNS()
