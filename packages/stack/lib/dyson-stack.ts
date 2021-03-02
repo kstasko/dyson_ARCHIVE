@@ -5,6 +5,7 @@ import { Topic } from '@aws-cdk/aws-sns';
 import { SnsEventSource } from '@aws-cdk/aws-lambda-event-sources';
 import * as path from 'path';
 import * as fs from 'fs';
+import { Code } from '@aws-cdk/aws-lambda';
 
 const lambdas = fs.readdirSync(`${__dirname}/../../lambda`);
 
@@ -20,7 +21,7 @@ export class DysonStack extends cdk.Stack {
 
     lambdas.forEach((lambdaId) => {
       const dysonLambda = new lambda.Function(this, `${lambdaId}-lambda`, {
-        code: new lambda.InlineCode(path.join(__dirname, '..', '..', 'lambda', lambdaId)),
+        code: Code.fromAsset(path.join(__dirname, '..', '..', 'lambda', lambdaId)),
         handler: 'index.handler',
         runtime: lambda.Runtime.NODEJS_12_X,
         timeout: cdk.Duration.seconds(10),
