@@ -27,7 +27,7 @@ export class DysonStack extends cdk.Stack {
         role: lambdaRole
       });
       
-      dysonLambda.addEventSource(new SnsEventSource(new Topic(this, `${lambdaId}-topic`)));
+      dysonLambda.addEventSource(new SnsEventSource(new Topic(this, `${lambdaId}-topic`, {displayName: `${lambdaId}-topic`})));
     })
 
   }
