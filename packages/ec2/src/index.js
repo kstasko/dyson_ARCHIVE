@@ -3,7 +3,6 @@ require('dotenv').config();
 
 const { discordListener } = require('./clients/discord');
 const { getSecret } = require('./security/secret');
-const {publishMessage} = require('./clients/sns');
 
 
 const app = express();
