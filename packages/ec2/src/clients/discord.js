@@ -9,8 +9,7 @@ const discordListener = (secret) => {
     });
 
     bot.on('message', async (msg) => {
-        // TODO would like to log message id with username
-        console.log(msg.author.username + ' has written messageId: ' + 'to the channel.')
+        console.log(msg.author.username + ' has written messageId: ' + msg.id + 'to the channel.')
         await publishMessage(msg)
     });
 
