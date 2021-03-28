@@ -10,6 +10,9 @@
     "type": "git",
     "url": "github.com/kstasko/dyson"
   },
+  "dependencies": {
+    "aws-sdk": "^2.756.0"
+  },
   "author": "groovy & laulau",
   "license": "ISC"
 }

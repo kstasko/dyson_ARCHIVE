@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Discord bot to moderate channel",
   "main": "src/index.js",
+  "private": true,
   "scripts": {
     "start": "npx node-lambda package && npx node-lambda run",
     "deploy": "npx node-lambda package && npx node-lambda deploy",
@@ -16,5 +17,6 @@
   "license": "ISC",
   "devDependencies": {
     "lerna": "^3.22.1"
-  }
+  },
+  "workspaces": ["packages/ec2", "packages/stack", "packages/lambda/**"]
 }

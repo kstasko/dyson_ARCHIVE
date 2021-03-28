@@ -6,7 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-      - run: npm install
+      - run: yarn install
       - name: cdk deploy
         uses: youyo/aws-cdk-github-actions@v1
         with:
