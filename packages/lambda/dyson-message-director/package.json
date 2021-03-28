@@ -1,0 +1,15 @@
+{
+  "name": "dyson-message-director",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/kstasko/dyson"
+  },
+  "author": "groovy & laulau",
+  "license": "ISC"
+}
