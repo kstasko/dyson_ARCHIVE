@@ -25,13 +25,15 @@ export class DysonStack extends cdk.Stack {
 
       const dysonLambda = new lambda.Function(this, `${lambdaId}-lambda`, {
         code: Code.fromAsset(path.join(__dirname, '..', '..', 'lambda', lambdaId)),
-        handler: 'index.handler',
+        handler: lambdaId === 'dyson-message-director' ? 'src/index.handler' : 'index.handler',
         runtime: lambda.Runtime.NODEJS_12_X,
         timeout: cdk.Duration.seconds(10),
         role: lambdaRole
       });
       if (lambdaId === 'dyson-message-director'){
         dysonLambda.addEventSource(new SnsEventSource(new Topic(this, 'dyson-message', {topicName:'dyson-message'})));
+      } else {
+        dysonLambda.addEventSource(new SnsEventSource(new Topic(this, lambdaId, {topicName: lambdaId})));
       }
     })
 
