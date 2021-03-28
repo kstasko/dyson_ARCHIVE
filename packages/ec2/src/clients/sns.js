@@ -9,7 +9,8 @@ async function publishMessage(discordMessage) {
             Message: JSON.stringify(discordMessage),
             TopicArn: 'arn:aws:sns:us-east-2:467222377375:dyson-message'
         }
-
+        console.log(params.Message instanceof string)
+        
         const awsSNSClient = new AWS.SNS()
         const data = await awsSNSClient.publish(params).promise();
 
