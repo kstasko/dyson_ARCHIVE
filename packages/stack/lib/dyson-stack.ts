@@ -12,6 +12,8 @@ const lambdas = fs.readdirSync(`${__dirname}/../../lambda`);
 export class DysonStack extends cdk.Stack {
   constructor(app: cdk.App, id: string, stackProps?: cdk.StackProps) {
     super(app, id, stackProps);
+
+    //TODO create Director servicerole in IAM
     const lambdaRole = new Role(this, 'lambdaRole',
       {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
@@ -20,6 +22,7 @@ export class DysonStack extends cdk.Stack {
     )
 
     lambdas.forEach((lambdaId) => {
+
       const dysonLambda = new lambda.Function(this, `${lambdaId}-lambda`, {
         code: Code.fromAsset(path.join(__dirname, '..', '..', 'lambda', lambdaId)),
         handler: 'index.handler',
@@ -27,8 +30,9 @@ export class DysonStack extends cdk.Stack {
         timeout: cdk.Duration.seconds(10),
         role: lambdaRole
       });
-      
-      dysonLambda.addEventSource(new SnsEventSource(new Topic(this, `${lambdaId}-topic`, {topicName: `${lambdaId}-topic`})));
+      if (lambdaId === 'dyson-message-director'){
+        dysonLambda.addEventSource(new SnsEventSource(new Topic(this, 'dyson-message', {topicName:'dyson-message'})));
+      }
     })
 
   }
