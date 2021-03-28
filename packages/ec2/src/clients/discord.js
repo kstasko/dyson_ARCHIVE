@@ -9,7 +9,7 @@ const discordListener = (secret) => {
     });
 
     bot.on('message', async (msg) => {
-        console.log(msg.author.username + ' has written messageId: ' + msg.id + 'to the channel.')
+        console.log(msg.author.username + ' has written messageId: ' + msg.id + ' to the channel.')
         await publishMessage(msg)
     });
 
