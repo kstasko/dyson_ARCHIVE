@@ -1,6 +1,4 @@
 const { AWS } = require('./AWS/AWS');
-const DYSON_SNS = 'arn:aws:sns:us-east-2:467222377375:dyson-message'
-
 
 async function publishMessage(message) {
     try {
@@ -8,13 +6,13 @@ async function publishMessage(message) {
 
         const params = {
             Message: message,
-            TopicArn: `${DYSON_SNS}`
+            TopicArn: 'arn:aws:sns:us-east-2:467222377375:dyson-message'
         }
 
         const awsSNSClient = new AWS.SNS()
         const data = await awsSNSClient.publish(params).promise();
 
-        console.log(`Message ${params.Message} Sent to Topic ${params.DYSON_SNS} with id ${data.MessageId}`);
+        console.log(`Message ${params.Message.id} Sent to Topic ${params.TopicArn} with id ${data.MessageId}`);
 
     } catch (err) {
         console.log('Error Publishing Message', err);
