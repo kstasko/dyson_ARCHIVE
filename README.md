@@ -12,11 +12,6 @@ Discord Bot intended to support the discord server
   - play chungus song
   - report people
 
-#
-
-![Image of AWS Architecture](https://github.com/kstasko/dyson/blob/master/images/dyson.jpg)
-
-#
 
 ## To Run You Need:
 * AWS Access & Secret Access Key
