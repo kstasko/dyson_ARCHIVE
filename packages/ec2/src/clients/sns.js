@@ -12,6 +12,7 @@ async function publishMessage(message) {
         const awsSNSClient = new AWS.SNS()
         const data = await awsSNSClient.publish(params).promise();
 
+        //TODO: log below message to Cloudwatch log group
         console.log(`Message ${params.Message.id} Sent to Topic ${params.TopicArn} with id ${data.MessageId}`);
 
     } catch (err) {
