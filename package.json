@@ -1,5 +1,5 @@
 {
-  "name": "dyson-tight",
+  "name": "dyson",
   "version": "1.0.0",
   "description": "Discord bot to moderate channel",
   "main": "src/index.js",
@@ -15,8 +15,15 @@
   },
   "author": "groovy and laulau",
   "license": "ISC",
-  "devDependencies": {
-    "lerna": "^3.22.1"
-  },
-  "workspaces": ["packages/ec2", "packages/stack", "packages/lambda/**"]
+  "devDependencies": {},
+  "workspaces": {
+    "packages": [
+      "packages/ec2",
+      "packages/stack",
+      "packages/lambda/*"
+    ],
+    "nohoist": [
+      "**/*"
+    ]
+  }
 }
