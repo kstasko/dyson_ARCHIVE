@@ -17,10 +17,10 @@ export class DysonStack extends cdk.Stack {
     const lambdaRole = new Role(this, 'lambdaRole',
       {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
-        managedPolicies: [ManagedPolicy.fromAwsManagedPolicyName('SecretsManagerReadWrite'), ManagedPolicy.fromAwsManagedPolicyName('AWSLambda_FullAccess')]
+        managedPolicies: [ManagedPolicy.fromAwsManagedPolicyName('SecretsManagerReadWrite'), ManagedPolicy.fromAwsManagedPolicyName('AWSLambda_FullAccess'), ManagedPolicy.fromAwsManagedPolicyName('CloudWatchLogsFullAccess')]
       }
     )
-
+    
     lambdas.forEach((lambdaId) => {
 
       const dysonLambda = new lambda.Function(this, `${lambdaId}-lambda`, {
