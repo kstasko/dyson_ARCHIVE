@@ -11,8 +11,7 @@
     "url": "github.com/kstasko/dyson"
   },
   "dependencies": {
-    "aws-sdk": "2.797.0",
-    "uuid": "^8.3.2"
+    "aws-sdk": "2.797.0"
   },
   "author": "groovy & laulau",
   "license": "ISC"
