@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "start": "npx node-lambda package && npx node-lambda run",
-    "deploy": "npx node-lambda package && npx node-lambda deploy",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "yarn workspace stack deploy"
   },
   "repository": {
     "type": "git",

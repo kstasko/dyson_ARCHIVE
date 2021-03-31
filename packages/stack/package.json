@@ -18,7 +18,8 @@
     "url": "git+https://github.com/kstasko/dyson.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "deploy": "cdk deploy --require-approval never"
   },
   "bugs": {
     "url": "https://github.com/kstasko/dyson/issues"
