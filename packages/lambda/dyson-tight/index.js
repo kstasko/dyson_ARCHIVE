@@ -25,7 +25,7 @@ exports.handler = async (event) => {
     msg.setName("Dyson");
     msg.setText("Tight");
 
-    Hook.send(msg)
+    //Hook.send(msg)
 
     request.send(JSON.stringify(params));
 }
