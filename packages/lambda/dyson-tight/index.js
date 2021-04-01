@@ -25,15 +25,16 @@ exports.handler = async (event) => {
     const discordUrl = await getSecret('discordUrl');
     const payload = "tight";
 
+    const request = new XMLHttpRequest();
+    request.open("POST", discordUrl);
+    request.setRequestHeader('Content-type', 'application/json');
+
+
+
     const params = {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        method: "POST",
-        payload: payload,
-        muteHttpExceptions: true
+        username: 'Dyson',
+        content: payload,
     };
 
-    const response = UrlFetchApp.fetch(discordUrl, params);
-    Logger.log(response.getContentText());
+    request.send(JSON.stringify(params));
 }
