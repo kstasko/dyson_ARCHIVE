@@ -23,9 +23,10 @@ exports.handler = async (event) => {
 
     const msg = new webhook.MessageBuilder();
     msg.setName("Dyson");
+    msg.setAvatar("https://i.imgur.com/Hc5ZBAU.jpg");
     msg.setText("Tight");
 
-    //Hook.send(msg)
+    Hook.send(msg)
 
     request.send(JSON.stringify(params));
 }
