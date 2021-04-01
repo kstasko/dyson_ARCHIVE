@@ -19,20 +19,21 @@ async function getSecret(secretName) {
 };
 
 exports.handler = async (event) => {
-  const botSecret = await getSecret('bot_client_secret');
-  const channelId = await getSecret('discord_channel_id');
+    const botSecret = await getSecret('bot_client_secret');
+    const channelId = await getSecret('discord_channel_id');
 
-  bot.on('ready', () => {
-    console.log('At the ready!!');
-    bot.channels.cache.get(channelId).send('Tight.');
-  });
+    const discordUrl = await getSecret('discordUrl');
+    const payload = "tight";
 
-  bot.login(botSecret);
+    const params = {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        method: "POST",
+        payload: payload,
+        muteHttpExceptions: true
+    };
 
-  await sleep(2000);
-  return { statusCode: 200, body: JSON.stringify("Hello from AWS!") }
-}
-
-function sleep (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
+    const response = UrlFetchApp.fetch(discordUrl, params);
+    Logger.log(response.getContentText());
 }
