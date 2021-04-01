@@ -1,4 +1,4 @@
-const XMLHttpRequest = require('xmlhttprequest');
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const bot = new Discord.Client();
 var AWS = require('aws-sdk');
