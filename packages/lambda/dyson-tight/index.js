@@ -1,4 +1,4 @@
-const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+const webhook = require("webhook-discord");
 
 const bot = new Discord.Client();
 var AWS = require('aws-sdk');
@@ -19,20 +19,21 @@ async function getSecret(secretName) {
 };
 
 exports.handler = async (event) => {
-    const botSecret = await getSecret('bot_client_secret');
-    const channelId = await getSecret('discord_channel_id');
+    //const botSecret = await getSecret('bot_client_secret');
+    //const channelId = await getSecret('discord_channel_id');
 
     const discordUrl = await getSecret('discordUrl');
     const payload = "tight";
 
-    const request = new XMLHttpRequest();
-    request.open("POST", discordUrl);
-    request.setRequestHeader('Content-type', 'application/json');
+    const Hook = new webhook.Webhook(discordUrl);
 
-    const params = {
-        username: 'Dyson',
-        content: payload,
-    };
+    const msg = new webhook.MessageBuilder()
+    msg.setName("Dyson");
+    msg.setText(payload);
+
+    Hook.send(msg)
+
+    //request.setRequestHeader('Content-type', 'application/json');
 
     request.send(JSON.stringify(params));
 }
