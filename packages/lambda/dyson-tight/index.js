@@ -1,6 +1,5 @@
 const webhook = require("webhook-discord");
 
-const bot = new Discord.Client();
 var AWS = require('aws-sdk');
 const region = process.env.AWS_REGION;
 
