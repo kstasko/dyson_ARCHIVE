@@ -2,7 +2,7 @@
   "name": "dyson-tight",
   "version": "1.0.0",
   "description": "Discord bot to moderate channel",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "start": "npx node-lambda package && npx node-lambda run",
     "deploy": "npx node-lambda package && npx node-lambda deploy",
@@ -40,7 +40,7 @@
   "author": "groovy and laulau",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.755.0",
+    "aws-sdk": "2.797.0",
     "discord.js": "^12.3.1"
   }
 }

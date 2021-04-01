@@ -1,18 +1,20 @@
 const { AWS } = require('./AWS/AWS');
-const AWS_ACCOUNT = 'arn:aws:sns:us-east-2:467222377375'
 
-
-async function publishMessage(topic) {
+async function publishMessage(discordMessage) {
     try {
-        console.log('SNS Trying to Send Message')
+        console.log('Publishing Message to SNS')
+
         const params = {
-            Message: 'hello!',
-            TopicArn: `${AWS_ACCOUNT}:${topic}`
+            Message: JSON.stringify(discordMessage),
+            TopicArn: 'arn:aws:sns:us-east-2:467222377375:dyson-message'
         }
 
         const awsSNSClient = new AWS.SNS()
         const data = await awsSNSClient.publish(params).promise();
-        console.log(`Message ${params.Message} Sent to Topic ${params.TopicArn} with id ${data.MessageId}`);
+
+        //TODO: log below message to Cloudwatch log group
+        console.log(`Message ${discordMessage.id} Sent to Topic ${params.TopicArn} with id ${data.MessageId}`);
+
     } catch (err) {
         console.log('Error Publishing Message', err);
     }
