@@ -21,8 +21,8 @@ async function getSecret(secretName) {
 exports.handler = async (event) => {
     const discordUrl = await getSecret('discordUrl');
     const Hook = new webhook.Webhook(discordUrl);
-    const msg = new webhook.MessageBuilder()
 
+    const msg = new webhook.MessageBuilder()
     msg.setName("Dyson");
     msg.setText("tight");
 
