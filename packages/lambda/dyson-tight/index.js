@@ -23,7 +23,7 @@ exports.handler = async (event) => {
 
     const msg = new webhook.MessageBuilder();
     msg.setName("Dyson");
-    msg.setText("tight");
+    msg.setText("Tight");
 
     Hook.send(msg)
 
