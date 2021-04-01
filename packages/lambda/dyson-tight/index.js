@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const XMLHttpRequest = require('xmlhttprequest');
 
 const bot = new Discord.Client();
 var AWS = require('aws-sdk');
@@ -28,8 +28,6 @@ exports.handler = async (event) => {
     const request = new XMLHttpRequest();
     request.open("POST", discordUrl);
     request.setRequestHeader('Content-type', 'application/json');
-
-
 
     const params = {
         username: 'Dyson',

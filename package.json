@@ -25,5 +25,8 @@
     "nohoist": [
       "**/*"
     ]
+  },
+  "dependencies": {
+    "xmlhttprequest": "^1.8.0"
   }
 }
