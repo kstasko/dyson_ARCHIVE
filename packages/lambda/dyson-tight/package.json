@@ -41,6 +41,7 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "2.797.0",
+    "axios": "^0.21.1",
     "discord.js": "^12.3.1"
   }
 }
