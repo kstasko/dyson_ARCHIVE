@@ -18,21 +18,6 @@ async function getSecret(secretName) {
 };
 
 exports.handler = async (event) => {
-    const discordUrl = await getSecret('discordUrl');
-    const Hook = new webhook.Webhook(discordUrl);
-
-    const msg = new webhook.MessageBuilder();
-    msg.setName("Dyson");
-    msg.setAvatar("https://i.imgur.com/Hc5ZBAU.jpg");
-    msg.setText("Tight");
-
-    Hook.send(msg)
-
-    request.send(JSON.stringify(params));
-    await sleep(2000);
-}
-
-exports.handler = async (event) => {
     const botSecret = await getSecret('bot_client_secret');
     const channelId = await getSecret('discord_channel_id');
 
