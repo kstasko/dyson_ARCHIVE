@@ -31,3 +31,22 @@ exports.handler = async (event) => {
     request.send(JSON.stringify(params));
     await sleep(2000);
 }
+
+exports.handler = async (event) => {
+    const botSecret = await getSecret('bot_client_secret');
+    const channelId = await getSecret('discord_channel_id');
+
+    bot.on('ready', () => {
+        console.log('At the ready!!');
+        bot.channels.cache.get(channelId).send('Tight.');
+    });
+
+    bot.login(botSecret);
+
+    await sleep(2000);
+    return { statusCode: 200, body: JSON.stringify("Hello from AWS!") }
+}
+
+function sleep(time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+}
