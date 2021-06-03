@@ -21,10 +21,11 @@ async function getSecret(secretName) {
 exports.handler = async (event) => {
   const botSecret = await getSecret('bot_client_secret');
   const channelId = await getSecret('discord_channel_id');
+  const chosenItem = chooseItem(JSON.parse(event.Records[0].Sns.Message));
 
   bot.on('ready', () => {
     console.log('At the ready!!');
-    bot.channels.cache.get(channelId).send('mmmmgawa.');
+    bot.channels.cache.get(channelId).send(chosenItem);
   });
 
   bot.login(botSecret);
@@ -35,4 +36,9 @@ exports.handler = async (event) => {
 
 function sleep (time) {
   return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+function chooseItem(message) {
+    const listedItems = message.split(',')
+    return listemItems[Math.floor(Math.random()*listedItems.length())];
 }
