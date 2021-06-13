@@ -19,7 +19,7 @@ async function getSecret(secretName) {
 };
 
 exports.handler = async (event) => {
-  print(event)
+  console.log(event)
   const botSecret = await getSecret('bot_client_secret');
   const channelId = await getSecret('discord_channel_id');
   const chosenItem = chooseItem(JSON.parse(event.Records[0].Sns.Message));
