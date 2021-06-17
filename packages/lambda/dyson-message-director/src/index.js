@@ -2,7 +2,6 @@ const { publishMessage } = require('./clients/sns');
 exports.handler = async (event) => {
     //sample SNS event https://docs.aws.amazon.com/lambda/latest/dg/with-sns.html
     const discordMessage = (JSON.parse(event.Records[0].Sns.Message)).content;
-    console.log(discordMessage.substring(0, 3));
 
     if (discordMessage === 'tight') {
         await publishMessage('dyson-tight');
