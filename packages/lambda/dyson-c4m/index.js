@@ -37,6 +37,7 @@ exports.handler = async (event) => {
 
     bot.login(botSecret);
     await sleep(2000);
+    bot.destroy();
 
     return { statusCode: 200, body: JSON.stringify("Hello from AWS!") };
 }
