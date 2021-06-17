@@ -8,9 +8,9 @@ async function publishMessage(topic. message) {
         const params = {
             Message: message,
             TopicArn: `arn:aws:sns:us-east-2:467222377375:${topic}`
-        }
+        };
 
-        const awsSNSClient = new AWS.SNS()
+        const awsSNSClient = new AWS.SNS();
         const data = await awsSNSClient.publish(params).promise();
 
         console.log(`Message ${params.Message} Sent to Topic ${params.TopicArn} with id ${data.MessageId}`);
