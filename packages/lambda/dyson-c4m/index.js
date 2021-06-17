@@ -19,6 +19,7 @@ async function getSecret(secretName) {
 };
 
 exports.handler = async (event) => {
+    console.log('whats going on here....');
     console.log(event.Records[0].Sns.Message.content);
 
     const botSecret = await getSecret('bot_client_secret'); 
@@ -29,11 +30,8 @@ exports.handler = async (event) => {
     console.log(chosenItem);
 
     bot.on('ready', () => {
-
         console.log('At the ready!!');
-
         bot.channels.cache.get(channelId).send(chosenItem);
-
     });
 
     bot.login(botSecret);
