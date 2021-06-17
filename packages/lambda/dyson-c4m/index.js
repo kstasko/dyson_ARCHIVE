@@ -48,6 +48,5 @@ function sleep (time) {
 function chooseItem(message) {
     console.log(message);
     const listOfItems = message.split(',');
-    //return listemItems[Math.floor(Math.random()*listedItems.length())];
-    return listOfItems[0];
+    return listOfItems[Math.floor(Math.random()*listOfItems.length())];
 }
