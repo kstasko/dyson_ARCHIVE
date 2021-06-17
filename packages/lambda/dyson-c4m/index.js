@@ -23,6 +23,7 @@ exports.handler = async (event) => {
   const botSecret = await getSecret('bot_client_secret');
   const channelId = await getSecret('discord_channel_id');
   const chosenItem = chooseItem(JSON.parse(event.Records[0].Sns.Message));
+    console.log(chosenItem);
 
   bot.on('ready', () => {
     console.log('At the ready!!');
@@ -40,6 +41,8 @@ function sleep (time) {
 }
 
 function chooseItem(message) {
-    const listedItems = message.split(',')
-    return listemItems[Math.floor(Math.random()*listedItems.length())];
+    console.log(message)
+    //const listedItems = message.split(',')
+    //return listemItems[Math.floor(Math.random()*listedItems.length())];
+    return message[0];
 }
