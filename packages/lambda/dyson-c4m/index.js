@@ -19,14 +19,16 @@ async function getSecret(secretName) {
 };
 
 exports.handler = async (event) => {
-    console.log('whats going on here....');
-    console.log(JSON.parse(event.Records[0].Sns.Message.content));
+
+    console.log(event);
+    const message = event.Records[0].Sns.Message;
+    console.log(message);
 
     const botSecret = await getSecret('bot_client_secret'); 
     const channelId = await getSecret('discord_channel_id');
 
-    const chosenItem = chooseItem(JSON.parse(event.Records[0].Sns.Message.content));
-
+    //const chosenItem = chooseItem(JSON.parse(event.Records[0].Sns.Message.content));
+    const chosenItem = message.split(',')[1];
     console.log(chosenItem);
 
     bot.on('ready', () => {
