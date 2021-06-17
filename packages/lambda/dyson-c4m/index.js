@@ -20,14 +20,12 @@ async function getSecret(secretName) {
 
 exports.handler = async (event) => {
 
-    console.log(event);
     const message = event.Records[0].Sns.Message;
-    console.log(message);
 
     const botSecret = await getSecret('bot_client_secret'); 
     const channelId = await getSecret('discord_channel_id');
 
-    const selection = chooseItem(message.split(','));
+    const selection = chooseItem(message);
 
     console.log(selection);
 
@@ -47,8 +45,8 @@ function sleep (time) {
 }
 
 function chooseItem(message) {
-    console.log(message)
-    //const listedItems = message.split(',')
+    console.log(message);
+    const listOfItems = message.split(',');
     //return listemItems[Math.floor(Math.random()*listedItems.length())];
-    return message.split(',')[0];
+    return listOfItems[0];
 }
