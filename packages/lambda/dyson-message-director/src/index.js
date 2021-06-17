@@ -8,6 +8,6 @@ exports.handler = async (event) => {
     } else if (discordMessage === 'wtf') {
         await publishMessage('dyson-wtf-react');
     } else if (discordMessage.substring(0, 3) === 'c4m') {
-        await publishMessage(discordMessage);
+        await publishMessage('dyson-c4m');
     }
 }
