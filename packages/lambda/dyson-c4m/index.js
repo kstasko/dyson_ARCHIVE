@@ -27,13 +27,13 @@ exports.handler = async (event) => {
     const botSecret = await getSecret('bot_client_secret'); 
     const channelId = await getSecret('discord_channel_id');
 
-    //const chosenItem = chooseItem(JSON.parse(event.Records[0].Sns.Message.content));
-    const chosenItem = message.split(',')[1];
-    console.log(chosenItem);
+    const selection = chooseItem(message.split(','));
+
+    console.log(selection);
 
     bot.on('ready', () => {
         console.log('At the ready!!');
-        bot.channels.cache.get(channelId).send(chosenItem);
+        bot.channels.cache.get(channelId).send(selection);
     });
 
     bot.login(botSecret);
