@@ -21,11 +21,12 @@ async function getSecret(secretName) {
 exports.handler = async (event) => {
 
     const message = event.Records[0].Sns.Message;
+    console.log(message);
 
     const botSecret = await getSecret('bot_client_secret'); 
     const channelId = await getSecret('discord_channel_id');
 
-    const selection = chooseItem(message);
+    const selection = chooseItem(message.substring(4));
 
     console.log(selection);
 
