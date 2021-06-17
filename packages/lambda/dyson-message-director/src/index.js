@@ -8,7 +8,7 @@ exports.handler = async (event) => {
     if (discordMessage === 'tight') {
         await publishMessage('dyson-tight', discordMessage);
     } else if (discordMessage === 'wtf') {
-        await publishMessage('dyson-wtf-react', discordMessage)
+        await publishMessage('dyson-wtf-react', discordMessage);
     } else if (discordMessage.substring(0, 3) === 'c4m') {
         await publishMessage('dyson-c4m', discordMessage);
     }
