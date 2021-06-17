@@ -22,8 +22,10 @@ exports.handler = async (event) => {
   console.log(event)
   const botSecret = await getSecret('bot_client_secret');
   const channelId = await getSecret('discord_channel_id');
-  const chosenItem = chooseItem(JSON.parse(event.Records[0].Sns.Message));
-    console.log(chosenItem);
+
+
+  const chosenItem = chooseItem(JSON.parse(event.Records[0].Sns.Message.content));
+  console.log(chosenItem);
 
   bot.on('ready', () => {
     console.log('At the ready!!');
