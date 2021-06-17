@@ -19,23 +19,27 @@ async function getSecret(secretName) {
 };
 
 exports.handler = async (event) => {
-  console.log(event)
-  const botSecret = await getSecret('bot_client_secret');
-  const channelId = await getSecret('discord_channel_id');
+    console.log(event.Records[0].Sns.Message.content);
 
+    const botSecret = await getSecret('bot_client_secret'); 
+    const channelId = await getSecret('discord_channel_id');
 
-  const chosenItem = chooseItem(JSON.parse(event.Records[0].Sns.Message.content));
-  console.log(chosenItem);
+    const chosenItem = chooseItem(JSON.parse(event.Records[0].Sns.Message.content));
 
-  bot.on('ready', () => {
-    console.log('At the ready!!');
-    bot.channels.cache.get(channelId).send(chosenItem);
-  });
+    console.log(chosenItem);
 
-  bot.login(botSecret);
+    bot.on('ready', () => {
 
-  await sleep(2000);
-  return { statusCode: 200, body: JSON.stringify("Hello from AWS!") }
+        console.log('At the ready!!');
+
+        bot.channels.cache.get(channelId).send(chosenItem);
+
+    });
+
+    bot.login(botSecret);
+    await sleep(2000);
+
+    return { statusCode: 200, body: JSON.stringify("Hello from AWS!") };
 }
 
 function sleep (time) {
@@ -46,5 +50,5 @@ function chooseItem(message) {
     console.log(message)
     //const listedItems = message.split(',')
     //return listemItems[Math.floor(Math.random()*listedItems.length())];
-    return message[0];
+    return message.split(',')[0];
 }
