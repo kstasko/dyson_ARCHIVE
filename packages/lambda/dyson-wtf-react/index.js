@@ -34,6 +34,7 @@ exports.handler = async (event) => {
     bot.login(botSecret);
 
     await sleep(5000);
+    bot.destroy();
     return { statusCode: 200, body: JSON.stringify("WTF!") }
 }
 
