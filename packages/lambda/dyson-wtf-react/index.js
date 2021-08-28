@@ -1,32 +1,16 @@
+const { sleep, getSecret } = require('common');
 const Discord = require('discord.js');
 
-const bot = new Discord.Client();
-const region = process.env.AWS_REGION;
-var AWS = require('aws-sdk');
-
-
-const client = new AWS.SecretsManager({
-    region: region
-});
-
-async function getSecret(secretName) {
-    const data = await client.getSecretValue({ SecretId: secretName }).promise();
-    if ('SecretString' in data) {
-        return JSON.parse(data.SecretString)[secretName];
-    }
-    else {
-        return new Buffer(data.SecretBinary, 'base64').toString('ascii');
-    }
-};
+const DiscordClient = new Discord.Client();
 
 exports.handler = async (event) => {
     console.log('HANDLER -- RETRIEVING SECRETS')
     const botSecret = await getSecret('bot_client_secret');
     const channelId = await getSecret('discord_channel_id');
 
-    bot.on('ready', async () => {
+    DiscordClient.on('ready', async () => {
         console.log('DYSON -- DISCORD CLIENT SUCCESSFULLY LOGGED IN');
-        const channel = await bot.channels.fetch(channelId);
+        const channel = await DiscordClient.channels.fetch(channelId);
 
         console.log('DYSON -- FETCHING MESSAGE TO REACT TO');
         const recentMessages = await channel.messages.fetch({ limit: 2 });
@@ -37,9 +21,10 @@ exports.handler = async (event) => {
         await Promise.all(reactions.map(reaction => react(reaction, messageToReact)));
     });
 
-    bot.login(botSecret);
+    DiscordClient.login(botSecret);
 
     await sleep(5000);
+    console.log('HANDLER -- FIN')
     return { statusCode: 200, body: JSON.stringify("WTF!") }
 }
 
@@ -48,8 +33,3 @@ async function react(reaction, message) {
         resolve(message.react(reaction))
     })
 } 
-
-function sleep(time) {
-    console.log('SLEEP -- WAITING ' + time + ' MILI-SECONDS')
-    return new Promise((resolve) => setTimeout(resolve, time));
-}

@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "2.797.0",
+    "common": "1.0.0",
     "discord.js": "12.5.0",
     "workspace": "^0.0.1-preview.1"
   }

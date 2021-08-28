@@ -13,7 +13,6 @@ export class DysonStack extends cdk.Stack {
   constructor(app: cdk.App, id: string, stackProps?: cdk.StackProps) {
     super(app, id, stackProps);
 
-    //TODO create Director servicerole in IAM
     const lambdaRole = new Role(this, 'lambdaRole',
       {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
@@ -33,7 +32,8 @@ export class DysonStack extends cdk.Stack {
         handler: lambdaId === 'dyson-message-director' ? 'src/index.handler' : 'index.handler',
         runtime: lambda.Runtime.NODEJS_12_X,
         timeout: cdk.Duration.seconds(10),
-        role: lambdaRole
+        role: lambdaRole,
+        functionName: lambdaId
       });
       if (lambdaId === 'dyson-message-director'){
         dysonLambda.addEventSource(new SnsEventSource(new Topic(this, 'dyson-message', {topicName:'dyson-message'})));
