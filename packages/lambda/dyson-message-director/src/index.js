@@ -10,5 +10,7 @@ exports.handler = async (event) => {
         await publishMessage('dyson-wtf-react', discordMessage);
     } else if (discordMessage.substring(0, 3) === 'c4m') {
         await publishMessage('dyson-c4m', discordMessage);
+    } else if (discordMessage === 'yt') {
+        await publishMessage('dyson-play-audio', discordMessage);
     }
 }
