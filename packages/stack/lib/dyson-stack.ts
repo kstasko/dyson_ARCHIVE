@@ -1,19 +1,18 @@
-import * as cdk from '@aws-cdk/core';
-import * as lambda from '@aws-cdk/aws-lambda';
+import { App, Duration, Stack, StackProps} from '@aws-cdk/core';
 import { Role, ServicePrincipal, ManagedPolicy } from '@aws-cdk/aws-iam';
-import { Topic } from '@aws-cdk/aws-sns';
+import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
 import { SnsEventSource } from '@aws-cdk/aws-lambda-event-sources';
+import { Topic } from '@aws-cdk/aws-sns';
 import * as path from 'path';
 import * as fs from 'fs';
-import { Code } from '@aws-cdk/aws-lambda';
+
 
 const lambdas = fs.readdirSync(`${__dirname}/../../lambda`);
 
-export class DysonStack extends cdk.Stack {
-  constructor(app: cdk.App, id: string, stackProps?: cdk.StackProps) {
+export class DysonStack extends Stack {
+  constructor(app: App, id: string, stackProps?: StackProps) {
     super(app, id, stackProps);
 
-    //TODO create Director servicerole in IAM
     const lambdaRole = new Role(this, 'lambdaRole',
       {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
@@ -28,12 +27,13 @@ export class DysonStack extends cdk.Stack {
     
     lambdas.forEach((lambdaId) => {
 
-      const dysonLambda = new lambda.Function(this, `${lambdaId}-lambda`, {
+      const dysonLambda = new Function(this, `${lambdaId}-lambda`, {
         code: Code.fromAsset(path.join(__dirname, '..', '..', 'lambda', lambdaId)),
         handler: lambdaId === 'dyson-message-director' ? 'src/index.handler' : 'index.handler',
-        runtime: lambda.Runtime.NODEJS_12_X,
-        timeout: cdk.Duration.seconds(10),
-        role: lambdaRole
+        runtime: Runtime.NODEJS_12_X,
+        timeout: Duration.seconds(10),
+        role: lambdaRole,
+        functionName: lambdaId
       });
       if (lambdaId === 'dyson-message-director'){
         dysonLambda.addEventSource(new SnsEventSource(new Topic(this, 'dyson-message', {topicName:'dyson-message'})));
@@ -45,6 +45,6 @@ export class DysonStack extends cdk.Stack {
   }
 }
 
-const app = new cdk.App();
+const app = new App();
 new DysonStack(app, 'DysonStack');
 app.synth();

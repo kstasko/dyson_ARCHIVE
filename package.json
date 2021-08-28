@@ -20,7 +20,8 @@
     "packages": [
       "packages/ec2",
       "packages/stack",
-      "packages/lambda/*"
+      "packages/lambda/*",
+      "packages/common"
     ],
     "nohoist": [
       "**/*"
