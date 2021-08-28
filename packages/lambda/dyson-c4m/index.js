@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 
-const bot = new Discord.Client();
-var AWS = require('aws-sdk');
+const DiscordClient = new Discord.Client();
 const region = process.env.AWS_REGION;
+var AWS = require('aws-sdk');
 
 const client = new AWS.SecretsManager({
   region: region
@@ -19,35 +19,36 @@ async function getSecret(secretName) {
 };
 
 exports.handler = async (event) => {
-
+    console.log('DYSON -- MESSAGE RECEIVED');
     const message = event.Records[0].Sns.Message;
-    console.log(message);
 
+    console.log('HANDLER -- RETRIEVING SECRETS');
     const botSecret = await getSecret('bot_client_secret'); 
     const channelId = await getSecret('discord_channel_id');
 
+    console.log('HANDLER -- MAKING SELECTION FROM CHOICES');
     const selection = chooseItem(message.substring(4));
 
-    console.log(selection);
+    console.log('HANDLER -- ' + selection + ' WAS SELECTED');
 
-    bot.on('ready', () => {
-        console.log('At the ready!!');
-        bot.channels.cache.get(channelId).send(selection);
+    DiscordClient.on('ready', () => {
+        console.log('DYSON -- DISCORD CLIENT SUCCESSFULLY LOGGED IN')
+        DiscordClient.channels.cache.get(channelId).send(selection);
     });
 
-    bot.login(botSecret);
+    DiscordClient.login(botSecret);
     await sleep(2000);
-    bot.destroy();
-
-    return { statusCode: 200, body: JSON.stringify("Hello from AWS!") };
+    
+    console.log('HANDLER - FIN')
+    return { statusCode: 200, body: JSON.stringify("Item Chosen!") };
 }
 
-function sleep (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
+function sleep(time) {
+    console.log('SLEEP -- WAITING ' + time + ' MILI-SECONDS')
+    return new Promise((resolve) => setTimeout(resolve, time));
 }
 
 function chooseItem(message) {
-    console.log(message);
     const listOfItems = message.split(',');
     return listOfItems[Math.floor(Math.random()*listOfItems.length)];
 }

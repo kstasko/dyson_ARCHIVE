@@ -42,11 +42,11 @@ exports.handler = async (event) => {
     DiscordClient.login(botSecret);
 
     await sleep(5000);
-    console.log('HANDLER - FIN')
+    console.log('HANDLER -- FIN')
     return { statusCode: 200, body: JSON.stringify("Audio Played") }
 }
 
 function sleep(time) {
-    console.log('HANDLER -- WAITING ' + time + ' MILI-SECONDS')
+    console.log('SLEEP -- WAITING ' + time + ' MILI-SECONDS')
     return new Promise((resolve) => setTimeout(resolve, time));
 }

@@ -1,8 +1,9 @@
 const Discord = require('discord.js');
 
 const bot = new Discord.Client();
-var AWS = require('aws-sdk');
 const region = process.env.AWS_REGION;
+var AWS = require('aws-sdk');
+
 
 const client = new AWS.SecretsManager({
   region: region
@@ -19,22 +20,25 @@ async function getSecret(secretName) {
 };
 
 exports.handler = async (event) => {
+    console.log('HANDLER -- RETRIEVING SECRETS');
   const botSecret = await getSecret('bot_client_secret');
   const channelId = await getSecret('discord_channel_id');
 
   bot.on('ready', () => {
-    console.log('At the ready!!');
+      console.log('DYSON -- DISCORD CLIENT SUCCESSFULLY LOGGED IN');
       bot.channels.cache.get(channelId).send('Tight.');
-      console.log('successfully tightedc')
+      console.log('DYSON -- TIGHTED');
   });
 
   bot.login(botSecret);
 
-    await sleep(2000);
-    bot.destroy();
-  return { statusCode: 200, body: JSON.stringify("Hello from AWS!") }
+  await sleep(2000);
+  
+  console.log('HANDLER -- FIN')
+  return { statusCode: 200, body: JSON.stringify("Tighted!") }
 }
 
-function sleep (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
+function sleep(time) {
+    console.log('SLEEP -- WAITING ' + time + ' MILI-SECONDS')
+    return new Promise((resolve) => setTimeout(resolve, time));
 }
