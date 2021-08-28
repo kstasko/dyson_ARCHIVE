@@ -1,0 +1,13 @@
+#lambda-node
+deploy.env
+event.json
+lambda
+.env
+build/
+context.json
+event_sources.json
+
+#Node
+node_modules
+.eslintignore
+.npmignorey

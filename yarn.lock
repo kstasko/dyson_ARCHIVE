@@ -8740,6 +8740,11 @@ wordwrap@>=0.0.2, wordwrap@^1.0.0:
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
   integrity sha1-J1hIEIkUVqQXHI0CJkQa3pDLyus=
 
+workspace@^0.0.1-preview.1:
+  version "0.0.1-preview.1"
+  resolved "https://registry.yarnpkg.com/workspace/-/workspace-0.0.1-preview.1.tgz#0ba0a6b92b3dbc7f1502dd12bc27a37b1eec9083"
+  integrity sha512-oPpEvU7NIQ0MW7ReL+EigMUI2JPNp05kmqzWS6zXVUaSq5KxuQzfgxGd8wuurBulBkTaOnEcGge+2rriyDVHkw==
+
 wrap-ansi@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-2.1.0.tgz#d8fc3d284dd05794fe84973caecdd1cf824fdd85"

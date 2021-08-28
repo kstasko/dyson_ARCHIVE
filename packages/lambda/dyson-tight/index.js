@@ -24,7 +24,8 @@ exports.handler = async (event) => {
 
   bot.on('ready', () => {
     console.log('At the ready!!');
-    bot.channels.cache.get(channelId).send('Tight.');
+      bot.channels.cache.get(channelId).send('Tight.');
+      console.log('successfully tightedc')
   });
 
   bot.login(botSecret);
