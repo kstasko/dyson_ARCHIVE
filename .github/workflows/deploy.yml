@@ -11,12 +11,18 @@ jobs:
     steps:
       - name: Git Clone the Repository
         uses: actions/checkout@v2
+
       - name: Setup Node
         uses: actions/setup-node@v2
-      - run: yarn install
+
+      - name: Install Yarn
+        run: yarn install
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: arn:aws:iam::467222377375:role/github-actions
           aws-region: us-east-2
-      - run: yarn deploy 
+
+      - name: Deploy 
+        run: yarn deploy 
