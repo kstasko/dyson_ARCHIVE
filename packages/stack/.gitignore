@@ -1,5 +1,0 @@
-#Node
-node_modules
-.eslintignore
-.npmignore
-cdk.out

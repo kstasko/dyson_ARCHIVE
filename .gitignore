@@ -1,5 +1,0 @@
-#Node
-.eslintignore
-.npmignore
-.vs/VSWorkspaceState.json
-node_modules
