@@ -1,0 +1,9 @@
+#      OS        #
+##################
+*.env
+node_modules
+cdk.out
+
+# Python Runtime #
+##################
+*.pyc

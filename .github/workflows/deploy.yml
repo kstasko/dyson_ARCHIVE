@@ -1,0 +1,28 @@
+name: Main Branch Deployment
+on:
+  [ workflow_dispatch ]
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  deploy:
+    name: Deploy to AWS
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Configure AWS Credentials 
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: arn:aws:iam::467222377375:role/Cognito_githubactions_Auth_Role
+        aws-region: us-east-1
+
+    - name: Deploy to AWS
+      uses: youyo/aws-cdk-github-actions@v2
+      with:
+        cdk_subcommand: 'deploy'
+        cdk_stack: 'DysonStack'
+        cdk_args: '--require-approval never'
+        actions_comment: true
