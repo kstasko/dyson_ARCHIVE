@@ -15,7 +15,7 @@ export class DysonStack extends Stack {
     const bucket = new Bucket(this, 'dyson-bucket')
 
     new BucketDeployment(this, 'dyson-deploy', {
-      sources: [Source.asset('../appcode')],
+      sources: [Source.asset('./appcode/EC2')],
       destinationBucket: bucket
     })
 
@@ -34,6 +34,8 @@ export class DysonStack extends Stack {
       assumedBy: new ServicePrincipal('ec2.amazonaws.com'),
       description: 'Dyson Ec2 Role',
     });
+
+    bucket.grantRead(ec2Role)
 
     const securityGroup = new SecurityGroup(this, 'SecurityGroup', {
       vpc,
@@ -63,14 +65,14 @@ export class DysonStack extends Stack {
       securityGroup: securityGroup
     })
 
-    bucket.grantRead(instance.role)
+    
 
     const dysonAsset = new Asset(this, 'dyson-appcode-asset', {
-      path: './appcode/EC2-Deployment'
+      path: './appcode/EC2'
     })
 
     instance.userData.addExecuteFileCommand({
-      filePath: './appcode/EC2-Deployment/configure.sh'
+      filePath: './appcode/EC2/configure.sh'
     })
   }
 }
